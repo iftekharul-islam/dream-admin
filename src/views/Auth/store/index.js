@@ -1,6 +1,6 @@
 // import axios from 'axios'
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import Api from '../../../http'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import Api from "@src/http";
 
 export const Signin = createAsyncThunk('Auth/Signin', async (data) => {
   const response = await Api.post('login', data) 
@@ -21,9 +21,8 @@ export const AuthSlice = createSlice({
     builder
       .addCase(Signin.fulfilled, (state, action) => {
         if(action?.payload?.status) {
-          localStorage.setItem('userData', JSON.stringify(action.payload?.data?.user))
-          localStorage.setItem('accessToken', JSON.stringify(action.payload?.data?.accessToken))
-          localStorage.setItem("permissions", JSON.stringify(action.payload?.data?.permissions));
+          localStorage.setItem('userData', JSON.stringify(action.payload?.data))
+          localStorage.setItem('accessToken', JSON.stringify(action.payload?.data?.token))
 
           state.UserData = action.payload?.user
           state.accessToken = action.payload?.accessToken

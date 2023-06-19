@@ -1,34 +1,34 @@
 // ** React Imports
 import { useSkin } from "@hooks/useSkin";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // ** Icons Imports
-import { Facebook, Twitter, Mail, GitHub } from "react-feather";
+import { Facebook, GitHub, Mail, Twitter } from "react-feather";
 
 // ** Custom Components
 import InputPasswordToggle from "@components/input-password-toggle";
 
 // ** Reactstrap Imports
 import {
-  Row,
-  Col,
-  CardTitle,
-  CardText,
-  Form,
-  Label,
-  Input,
   Button,
+  CardText,
+  CardTitle,
+  Col,
+  Form,
+  Input,
+  Label,
+  Row,
 } from "reactstrap";
 
 // ** Illustrations Imports
-import illustrationsLight from "@src/assets/images/pages/login-v2.svg";
 import illustrationsDark from "@src/assets/images/pages/login-v2-dark.svg";
+import illustrationsLight from "@src/assets/images/pages/login-v2.svg";
 
 // ** Styles
 import "@styles/react/pages/page-authentication.scss";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Signin } from "./store";
-import { useState } from "react";
 
 const Login = () => {
   const { skin } = useSkin();
@@ -125,7 +125,7 @@ const Login = () => {
               </g>
             </g>
           </svg>
-          <h2 className="brand-text text-primary ms-1">Monogram online</h2>
+          <h2 className="brand-text text-primary ms-1">Dream Records</h2>
         </Link>
         <Col className="d-none d-lg-flex align-items-center p-5" lg="8" sm="12">
           <div className="w-100 d-lg-flex align-items-center justify-content-center px-5">
@@ -139,7 +139,7 @@ const Login = () => {
         >
           <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
             <CardTitle tag="h2" className="fw-bold mb-1">
-              Welcome to 7P! 👋
+              Welcome to Dream Records! 👋
             </CardTitle>
             <CardText className="mb-2">
               Please sign-in to your account and start the adventure
