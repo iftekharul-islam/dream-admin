@@ -1,4 +1,4 @@
-import { Circle, Settings, Users } from "react-feather";
+import { Circle, Cpu, Settings, Users } from "react-feather";
 
 const check = (permission) => {
   const permissions = JSON.parse(localStorage.getItem("permissions"));
@@ -14,13 +14,20 @@ const check = (permission) => {
 
 export default [
   {
+    id: "user",
+    title: "Users",
+    icon: <Users size={20} />,
+    isAccess: true,
+    navLink: "/user",
+  },
+  {
     id: "appearance",
     title: "Appearances",
     icon: <Settings size={20} />,
     isAccess: true,
     children: [
       {
-        id: "purchase_product",
+        id: "language",
         title: "Languages",
         icon: <Circle size={20} />,
         isAccess: true,
@@ -31,50 +38,50 @@ export default [
         title: "Genres",
         icon: <Circle size={20} />,
         isAccess: true,
-        navLink: "/vendor",
+        navLink: "/genre",
       },
       {
-        id: "genre",
+        id: "subgenre",
         title: "Subgenres",
         icon: <Circle size={20} />,
         isAccess: true,
-        navLink: "/vendor",
+        navLink: "/subgenre",
       },
       {
-        id: "genre",
+        id: "format",
         title: "Formats",
         icon: <Circle size={20} />,
         isAccess: true,
-        navLink: "/vendor",
+        navLink: "/format",
       },
       {
-        id: "genre",
+        id: "parental_advisory",
         title: "Parental Advisories",
         icon: <Circle size={20} />,
         isAccess: true,
-        navLink: "/vendor",
+        navLink: "/parental-advisory",
       },
     ],
   },
   {
     id: "user_appearance",
-    title: "User Appearance",
-    icon: <Users size={20} />,
+    title: "User Appearances",
+    icon: <Cpu size={20} />,
     isAccess: true,
     children: [
       {
-        id: "purchase_product",
+        id: "artist",
         title: "Artists",
         icon: <Circle size={20} />,
         isAccess: true,
-        navLink: "/product",
+        navLink: "/artist",
       },
       {
-        id: "vendor",
+        id: "label",
         title: "Labels",
         icon: <Circle size={20} />,
         isAccess: true,
-        navLink: "/vendor",
+        navLink: "/label",
       },
     ],
   },

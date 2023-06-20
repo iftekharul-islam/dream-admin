@@ -1,6 +1,4 @@
 import axios from "axios";
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
 import baseUrl from "./config";
 
 let Api = axios.create({
@@ -12,27 +10,27 @@ let Api = axios.create({
   },
   transformResponse: (data) => {
     let response = JSON.parse(data);  
-    if (response?.status == 201) {
-      const MySwal = withReactContent(Swal)
-      MySwal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: response?.message,
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }
+    // if (response?.status == 201) {
+    //   const MySwal = withReactContent(Swal)
+    //   MySwal.fire({
+    //     position: 'top-end',
+    //     icon: 'success',
+    //     title: response?.message,
+    //     showConfirmButton: false,
+    //     timer: 1500
+    //   })
+    // }
 
-    if (response?.status == 203) {
-      const MySwal = withReactContent(Swal)
-      MySwal.fire({
-        position: 'top-end',
-        icon: 'error',
-        title: response?.message,
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }
+    // if (response?.status == 203) {
+    //   const MySwal = withReactContent(Swal)
+    //   MySwal.fire({
+    //     position: 'top-end',
+    //     icon: 'error',
+    //     title: response?.message,
+    //     showConfirmButton: false,
+    //     timer: 1500
+    //   })
+    // }
     
     return response;
   },
@@ -46,7 +44,7 @@ let Api = axios.create({
       return status;
     }
 
-    return status >= 200 && status < 300; // default
+    return status >= 200 && status < 300;
   },
 });
 

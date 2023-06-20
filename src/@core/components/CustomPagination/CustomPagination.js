@@ -2,7 +2,8 @@ import "@styles/react/libs/tables/react-dataTable-component.scss";
 import ReactPaginate from "react-paginate";
 
 const CustomPagination = (
-  current,
+  from,
+  to,
   total,
   currentPage,
   rowsPerPage,
@@ -13,7 +14,7 @@ const CustomPagination = (
   return (
     <span className="d-flex justify-content-between">
       <div className="d-flex align-items-center mx-2">
-        Showing {current} out of {total} Entries
+        Showing {from}-{to} out of {total} entries
       </div>
       <ReactPaginate
         previousLabel={""}
@@ -21,7 +22,7 @@ const CustomPagination = (
         pageCount={count || 1}
         activeClassName="active"
         forcePage={currentPage !== 0 ? currentPage - 1 : 0}
-        onPageChange={(page) => setCurrentPage(page.selected + 1)}
+        onPageChange={(page) => setCurrentPage({page: page.selected + 1})}
         pageClassName={"page-item"}
         nextLinkClassName={"page-link"}
         nextClassName={"page-item next"}

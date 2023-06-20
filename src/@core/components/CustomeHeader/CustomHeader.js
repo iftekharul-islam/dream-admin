@@ -2,11 +2,11 @@ import { DebounceInput } from "react-debounce-input";
 import { PlusCircle } from "react-feather";
 import { Button, Col, Input, Row } from "reactstrap";
 
-const CustomHeader = ({ toggleSidebar, item, rowsPerPage, q, setParams }) => {
+const CustomHeader = ({ toggleSidebar, item, rowsPerPage, q, setParams, searchPlaceHolder, customComponent }) => {
   return (
     <div className="invoice-list-table-header w-100 me-1 ms-50 mt-2 mb-75">
       <Row>
-        <Col xl="1" className="d-flex align-items-center p-0">
+        <Col xl="2" className="d-flex align-items-center p-0">
           <div className="d-flex align-items-center w-100">
             <label htmlFor="rows-per-page">Show</label>
             <Input
@@ -15,7 +15,7 @@ const CustomHeader = ({ toggleSidebar, item, rowsPerPage, q, setParams }) => {
               id="rows-per-page"
               value={rowsPerPage}
               onChange={(e) =>
-                setParams({ rowsPerPage: e.currentTarget.value })
+                setParams({ rowsPerPage: e.currentTarget.value, page: 1})
               }
               style={{ width: "5rem" }}
             >
@@ -26,23 +26,26 @@ const CustomHeader = ({ toggleSidebar, item, rowsPerPage, q, setParams }) => {
             <label htmlFor="rows-per-page">Entries</label>
           </div>
         </Col>
-        <Col xm="7"></Col>
+        <Col xm="6">{customComponent}</Col>
         <Col
-          xl="4"
+          xl="2"
           className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1"
         >
-          <div className="d-flex align-items-center mb-sm-0 mb-1 me-1">
-            <DebounceInput
-              className="form-control ms-50 w-100"
-              type="text"
-              debounceTimeout={300}
-              autoFocus
-              placeholder="Search by"
-              value={q}
-              onChange={(e) => setParams({ q: e.target.value })}
-            />
-          </div>
+          <DebounceInput
+            className="form-control ms-50 w-100"
+            type="text"
+            debounceTimeout={300}
+            autoFocus
+            placeholder={searchPlaceHolder}
+            value={q}
+            onChange={(e) => setParams({ q: e.target.value, page: 1 })}
+          />
+        </Col>
 
+        <Col
+          xl="2"
+          className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1"
+        >
           <div className="d-flex align-items-center table-header-actions">
             {item && (
               <Button

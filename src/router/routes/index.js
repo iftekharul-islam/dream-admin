@@ -13,7 +13,15 @@ import PublicRoute from "@components/routes/PublicRoute";
 // ** Utils
 import { isObjEmpty } from "@utils";
 
+import FormatsRoute from "@src/views/Appearances/Formats/Route";
+import GenresRoute from "@src/views/Appearances/Genres/Route";
 import LanguagesRoute from "@src/views/Appearances/Languages/Route";
+import ParentalAdvisoriesRoute from "@src/views/Appearances/ParentalAdvisories/Route";
+import SubgenresRoute from "@src/views/Appearances/Subgenres/Route";
+import ArtistsRoute from "@src/views/UserApprearances/Artists/Route";
+import LabelsRoute from "@src/views/UserApprearances/Labels/Route";
+import UsersRoute from "@src/views/Users/Route";
+
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -34,14 +42,25 @@ const Register = lazy(() => import("../../views/Register"));
 const ForgotPassword = lazy(() => import("../../views/ForgotPassword"));
 const Error = lazy(() => import("../../views/Error"));
 
-
 // ** Merge Routes
 const Routes = [
   ...LanguagesRoute,
+  ...GenresRoute,
+  ...SubgenresRoute,
+  ...FormatsRoute,
+  ...ParentalAdvisoriesRoute,
+  ...LabelsRoute,
+  ...ArtistsRoute,
+  ...UsersRoute,
   {
     path: "/",
     index: true,
-    element: <Navigate replace to={localStorage.getItem('accessToken') ? '/home' : DefaultRoute} />,
+    element: (
+      <Navigate
+        replace
+        to={localStorage.getItem("accessToken") ? "/home" : DefaultRoute}
+      />
+    ),
   },
   {
     path: "/home",
@@ -160,4 +179,3 @@ const getRoutes = (layout) => {
 };
 
 export { DefaultRoute, Routes, TemplateTitle, getRoutes };
-

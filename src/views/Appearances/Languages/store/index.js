@@ -4,10 +4,44 @@ import Api from "@src/http";
 
 export const getAllData = createAsyncThunk(
   "store/getAllData",
-  async (_, { getState }) => {
-    const response = await Api.get("language");
-    console.log("A");
-    return response.data;
+  async (_, { dispatch, getState }) => {
+    const { params } = getState().languages;
+    dispatch(setLoading(true));
+    const res = await Api.get("language", { params });
+    dispatch(setLoading(false));
+    return res.data;
+  }
+);
+
+export const addData = createAsyncThunk(
+  "store/addData",
+  async (_, { dispatch, getState }) => {
+    dispatch(setLoading(true));
+    const { uploadData } = getState().languages;
+    const res = await Api.post("language", uploadData);
+    if (res.status === 422) {
+      dispatch(setError(res.data.errors));
+    } else if (res.status === 201) {
+      dispatch(toggleSidebarAction());
+      dispatch(getAllData());
+    }
+    dispatch(setLoading(false));
+  }
+);
+
+export const updateData = createAsyncThunk(
+  "store/addData",
+  async (_, { dispatch, getState }) => {
+    dispatch(setLoading(true));
+    const { uploadData } = getState().languages;
+    const res = await Api.post(`language/${uploadData?.id}`, uploadData);
+    if (res.status === 422) {
+      dispatch(setError(res.data.errors));
+    } else if (res.status === 201) {
+      dispatch(toggleSidebarAction());
+      dispatch(getAllData());
+    }
+    dispatch(setLoading(false));
   }
 );
 
@@ -15,20 +49,32 @@ export const storeSlice = createSlice({
   name: "store",
   initialState: {
     data: [],
+    uploadData: {},
+    errors: [],
 
     total: 1,
-    current: 0,
+    from: 0,
+    to: 0,
+    loading: false,
 
-    params: { rowsPerPage: 10, q: null },
-    pagination: { currentPage: 1, total: 0 },
-    sidebarOpen: false,
+    params: { rowsPerPage: 10, q: null, page: 1 },
     searchParams: {},
+
+    sidebarOpen: false,
+
+    options: {
+      status: [
+        { label: "Active", value: 1 },
+        { label: "Inactive", value: 0 },
+      ],
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllData.fulfilled, (state, action) => {
       state.data = action.payload?.data;
       state.total = action.payload?.total;
-      state.current = action.payload?.to - action.payload?.from + 1;
+      state.from = action.payload?.from;
+      state.to = action.payload?.to;
     });
   },
   reducers: {
@@ -40,9 +86,29 @@ export const storeSlice = createSlice({
     },
     toggleSidebarAction: (state) => {
       state.sidebarOpen = !state.sidebarOpen;
-    }
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
+    setError: (state, action) => {
+      state.errors = action.payload;
+    },
+    setUploadData: (state, action) => {
+      state.uploadData = { ...state.uploadData, ...action.payload };
+    },
+    emptyUploadData: (state, action) => {
+      state.uploadData = action.payload;
+    },
   },
 });
 
-export const { setParams, setSearchParams,toggleSidebarAction } = storeSlice.actions;
+export const {
+  setParams,
+  setSearchParams,
+  toggleSidebarAction,
+  setLoading,
+  setError,
+  setUploadData,
+  emptyUploadData,
+} = storeSlice.actions;
 export default storeSlice.reducer;
