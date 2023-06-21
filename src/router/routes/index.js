@@ -18,6 +18,7 @@ import GenresRoute from "@src/views/Appearances/Genres/Route";
 import LanguagesRoute from "@src/views/Appearances/Languages/Route";
 import ParentalAdvisoriesRoute from "@src/views/Appearances/ParentalAdvisories/Route";
 import SubgenresRoute from "@src/views/Appearances/Subgenres/Route";
+import AudiosRoute from "@src/views/Audios/Route";
 import ArtistsRoute from "@src/views/UserApprearances/Artists/Route";
 import LabelsRoute from "@src/views/UserApprearances/Labels/Route";
 import UsersRoute from "@src/views/Users/Route";
@@ -52,6 +53,7 @@ const Routes = [
   ...LabelsRoute,
   ...ArtistsRoute,
   ...UsersRoute,
+  ...AudiosRoute,
   {
     path: "/",
     index: true,

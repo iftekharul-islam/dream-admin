@@ -1,4 +1,4 @@
-import { Circle, Cpu, Settings, Users } from "react-feather";
+import { Circle, Cpu, Music, Settings, Users } from "react-feather";
 
 const check = (permission) => {
   const permissions = JSON.parse(localStorage.getItem("permissions"));
@@ -19,6 +19,13 @@ export default [
     icon: <Users size={20} />,
     isAccess: true,
     navLink: "/user",
+  },
+  {
+    id: "audio",
+    title: "Audios",
+    icon: <Music size={20} />,
+    isAccess: true,
+    navLink: "/audio",
   },
   {
     id: "appearance",

@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 import baseUrl from "./config";
 
 let Api = axios.create({
@@ -9,29 +10,13 @@ let Api = axios.create({
     accept: "application/json",
   },
   transformResponse: (data) => {
-    let response = JSON.parse(data);  
-    // if (response?.status == 201) {
-    //   const MySwal = withReactContent(Swal)
-    //   MySwal.fire({
-    //     position: 'top-end',
-    //     icon: 'success',
-    //     title: response?.message,
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   })
-    // }
-
-    // if (response?.status == 203) {
-    //   const MySwal = withReactContent(Swal)
-    //   MySwal.fire({
-    //     position: 'top-end',
-    //     icon: 'error',
-    //     title: response?.message,
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   })
-    // }
-    
+    let response = JSON.parse(data);
+    if (response?.status == 201) {
+      toast.success(response?.message);
+    }
+    if (response?.status == 203) {
+      toast.error(response?.message);
+    }
     return response;
   },
 
@@ -39,7 +24,7 @@ let Api = axios.create({
     if (status === 401) {
       localStorage.removeItem("user");
     }
-    
+
     if (status === 422) {
       return status;
     }
@@ -50,7 +35,8 @@ let Api = axios.create({
 
 Api.interceptors.request.use((config) => {
   config.headers.Authorization = `Bearer ${
-    localStorage.getItem("accessToken") && JSON.parse(localStorage.getItem("accessToken"))
+    localStorage.getItem("accessToken") &&
+    JSON.parse(localStorage.getItem("accessToken"))
   }`;
   return config;
 });

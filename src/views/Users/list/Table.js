@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card } from "reactstrap";
 import CustomPagination from "../../../@core/components/CustomPagination/CustomPagination";
 import CustomHeader from "../../../@core/components/CustomeHeader/CustomHeader";
-import { setParams, toggleSidebarAction } from "../store";
+import { emptyUploadData, setParams, toggleSidebarAction } from "../store";
 import { columns } from "./columns";
 
 const Table = () => {
@@ -57,6 +57,10 @@ const Table = () => {
               searchPlaceHolder="Search by Name/Email"
             />
           }
+          onRowClicked={(row) => {
+            dispatch(toggleSidebarAction());
+            dispatch(emptyUploadData({ ...row, isEdit: true }));
+          }}
         />
       </Card>
     </Fragment>

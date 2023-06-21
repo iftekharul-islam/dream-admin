@@ -1,5 +1,6 @@
 // ** Icons Import
 import { Heart } from "react-feather";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -16,7 +17,7 @@ const Footer = () => {
         <span className="d-none d-sm-inline-block">, All rights Reserved</span>
       </span>
       <span className="float-md-end d-none d-md-block">
-        Hand-crafted & Made with
+        Developed by <Link to="https://www.linkedin.com/in/imrul-afnan" target="_blank">Imrul Afnan</Link>
         <Heart size={14} />
       </span>
     </p>

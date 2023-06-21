@@ -5,43 +5,30 @@ import Api from "@src/http";
 export const getAllData = createAsyncThunk(
   "store/getAllData",
   async (_, { dispatch, getState }) => {
-    const { params } = getState().labels;
+    const { params } = getState().audios;
     dispatch(setLoading(true));
-    const res = await Api.get("label", { params });
+    const res = await Api.get("audio", { params });
     dispatch(setLoading(false));
     return res.data;
   }
 );
 
-export const addData = createAsyncThunk(
-  "store/addData",
-  async (_, { dispatch, getState }) => {
+export const getData = createAsyncThunk(
+  "store/getData",
+  async (id, { dispatch }) => {
     dispatch(setLoading(true));
-    const { uploadData } = getState().labels;
-    const res = await Api.post("label", uploadData);
-    if (res.status === 422) {
-      dispatch(setError(res.data.errors));
-    } else if (res.status === 201) {
-      dispatch(toggleSidebarAction());
-      dispatch(getAllData());
-    }
+    const res = await Api.get(`audio/${id}`);
     dispatch(setLoading(false));
+    return res.data;
   }
 );
 
 export const updateData = createAsyncThunk(
-  "store/addData",
-  async (_, { dispatch, getState }) => {
-    dispatch(setLoading(true));
-    const { uploadData } = getState().labels;
-    const res = await Api.post(`label/${uploadData?.id}`, uploadData);
-    if (res.status === 422) {
-      dispatch(setError(res.data.errors));
-    } else if (res.status === 201) {
-      dispatch(toggleSidebarAction());
-      dispatch(getAllData());
-    }
-    dispatch(setLoading(false));
+  "store/updateData",
+  async (data, {dispatch}) => {
+    const res = await Api.post(`audio/${data?.id}`, data?.data);
+    dispatch(getData(data?.id));
+    return res?.data;
   }
 );
 
@@ -57,6 +44,7 @@ export const storeSlice = createSlice({
   name: "store",
   initialState: {
     data: [],
+    showData: {},
     uploadData: {},
     errors: [],
 
@@ -74,22 +62,27 @@ export const storeSlice = createSlice({
     options: {
       status: [
         { label: "Pending", value: 1 },
-        { label: "Approved", value: 2 },
-        { label: "Rejected", value: 3 },
+        { label: "Draft", value: 2 },
+        { label: "Approved", value: 3 },
+        { label: "Rejected", value: 4 },
       ],
       user: [],
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getAllData.fulfilled, (state, action) => {
-      state.data = action.payload?.data;
-      state.total = action.payload?.total;
-      state.from = action.payload?.from;
-      state.to = action.payload?.to;
-    })
-    .addCase(getUserOptions.fulfilled, (state, action) => {
-      state.options = { ...state.options, user: action.payload?.data };
-    });
+    builder
+      .addCase(getAllData.fulfilled, (state, action) => {
+        state.data = action.payload?.data;
+        state.total = action.payload?.total;
+        state.from = action.payload?.from;
+        state.to = action.payload?.to;
+      })
+      .addCase(getData.fulfilled, (state, action) => {
+        state.showData = action.payload;
+      })
+      .addCase(getUserOptions.fulfilled, (state, action) => {
+        state.options = { ...state.options, user: action.payload?.data };
+      });
   },
   reducers: {
     setParams: (state, action) => {
