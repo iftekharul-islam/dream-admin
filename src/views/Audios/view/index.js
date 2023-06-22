@@ -1,7 +1,7 @@
 import moment from "moment";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Button,
   Card,
@@ -13,10 +13,9 @@ import {
 } from "reactstrap";
 import { getData, updateData } from "../store";
 
-import { Pause, Play } from "react-feather";
-
 const index = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const { showData, options } = useSelector((state) => state.audios);
 
@@ -29,36 +28,12 @@ const index = () => {
       dispatch(updateData({ id, data: { status: item?.value } }));
   };
 
-  const useAudio = url => {
-    const [audio] = useState(new Audio(url));
-    const [playing, setPlaying] = useState(false);
-  
-    const toggle = () => setPlaying(!playing);
-  
-    useEffect(() => {
-        playing ? audio.play() : audio.pause();
-      },
-      [playing]
-    );
-  
-    useEffect(() => {
-      audio.addEventListener('ended', () => setPlaying(false));
-      return () => {
-        audio.removeEventListener('ended', () => setPlaying(false));
-      };
-    }, []);
-  
-    return [playing, toggle];
-  };
-  
-  const Player = ({ url }) => {
-    const [playing, toggle] = useAudio(url);
-  
-    return (
-      <div>
-        {playing ? <Pause onClick={toggle} size={22} /> : <Play onClick={toggle} size={22} />}
-      </div>
-    );
+  const handleDownload = (url) => {
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = showData?.title;
+    link.target = "_blank";
+    link.click();
   };
 
   return (
@@ -66,7 +41,15 @@ const index = () => {
       <Card>
         <CardHeader>
           <div>
-            <h4>{showData?.title}</h4>
+            <h4>
+              <Button
+                color="primary"
+                className="me-1"
+                onClick={() => navigate("/audio/edit/" + id, { replace: false })}
+              >
+                Edit
+              </Button>
+            </h4>
           </div>
           <div className="d-flex align-items-center">
             {options?.status?.map((item) => {
@@ -105,15 +88,15 @@ const index = () => {
                   </Col>
                   <Col md="4">
                     <Label>Lyrics Language</Label>
-                    <h5>{showData?.title ?? "N/A"}</h5>
+                    <h5>{showData?.language?.name ?? "N/A"}</h5>
                   </Col>
                   <Col md="4">
                     <Label>Genre</Label>
-                    <h5>{showData?.subtitle ?? "N/A"}</h5>
+                    <h5>{showData?.genre?.name ?? "N/A"}</h5>
                   </Col>
                   <Col md="4">
                     <Label>Subgenre</Label>
-                    <h5>{showData?.language?.name ?? "N/A"}</h5>
+                    <h5>{showData?.subgenre?.name ?? "N/A"}</h5>
                   </Col>
                   <Col md="4">
                     <Label>Main Release Date</Label>
@@ -289,11 +272,40 @@ const index = () => {
             </Col>
             <Col md="3">
               <div>
-                <h3 className="mx-1">Images</h3>
+                <h3 className="mx-1">Player</h3>
                 <div className="border rounded p-1">
+                  {showData?.images &&
+                    showData?.images[0]?.image_download_url && (
+                      <sapn>
+                        <img
+                          src={
+                            showData?.images &&
+                            showData?.images[0]?.image_download_url
+                          }
+                          width="100%"
+                        />
+                        <Button
+                          color="primary"
+                          className="mt-2"
+                          onClick={() =>
+                            handleDownload(
+                              showData?.images[0]?.image_download_url
+                            )
+                          }
+                        >
+                          Download Image
+                        </Button>
+                      </sapn>
+                    )}
 
-                <img src={showData?.images && showData?.images[0]?.image_download_url} width="100%" />  
-                <Player url={showData?.files && showData?.files[0]?.file_download_url} className="border rounded p-1 my-1" />                
+                  {showData?.files && showData?.files[0]?.file_download_url && (
+                    <video controls name="media" width="100%" height={60}>
+                      <source
+                        src={showData?.files[0]?.file_download_url}
+                        type="audio/mpeg"
+                      />
+                    </video>
+                  )}
                 </div>
               </div>
             </Col>

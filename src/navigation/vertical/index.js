@@ -1,4 +1,4 @@
-import { Circle, Cpu, Music, Settings, Users } from "react-feather";
+import { Circle, Cpu, Headphones, Music, Settings, Users, Youtube } from "react-feather";
 
 const check = (permission) => {
   const permissions = JSON.parse(localStorage.getItem("permissions"));
@@ -26,6 +26,35 @@ export default [
     icon: <Music size={20} />,
     isAccess: true,
     navLink: "/audio",
+  },
+  {
+    id: "youtube_request",
+    title: "Youtube Requests",
+    icon: <Youtube size={20} />,
+    isAccess: true,
+    children: [
+      {
+        id: "claim_release",
+        title: "Claim Release",
+        icon: <Circle size={20} />,
+        isAccess: true,
+        navLink: "/claim-release",
+      },
+      {
+        id: "content_id_request",
+        title: "Content Id",
+        icon: <Circle size={20} />,
+        isAccess: true,
+        navLink: "/content-id-request",
+      },
+      {
+        id: "artist_channel_request",
+        title: "Artist Channel",
+        icon: <Circle size={20} />,
+        isAccess: true,
+        navLink: "/artist-channel-request",
+      },
+    ],
   },
   {
     id: "appearance",
@@ -91,5 +120,12 @@ export default [
         navLink: "/label",
       },
     ],
+  },
+  {
+    id: "support_center",
+    title: "Support Center",
+    icon: <Headphones size={20} />,
+    isAccess: true,
+    navLink: "/support-center",
   },
 ];
