@@ -52,7 +52,7 @@ export default [
         title: "Artist Channel",
         icon: <Circle size={20} />,
         isAccess: true,
-        navLink: "/artist-channel-request",
+        navLink: "/channel-request",
       },
     ],
   },

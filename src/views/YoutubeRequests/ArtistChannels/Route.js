@@ -6,7 +6,7 @@ const List = lazy(() => import("./list"));
 const Route = [
   {
     element: <List />,
-    path: "/artist-channel-request",
+    path: "/channel-request",
   }
 ];
 
