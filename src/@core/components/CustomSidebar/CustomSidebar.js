@@ -1,4 +1,7 @@
 import Sidebar from "@components/sidebar";
+import CopyToClipboard from "react-copy-to-clipboard";
+import { Copy } from "react-feather";
+import { toast } from "react-hot-toast";
 import Select from "react-select";
 import { Button, Form, Input, Label, Spinner } from "reactstrap";
 
@@ -20,6 +23,10 @@ const CustomSidebar = ({
   const onChangeOption = (name, value) => {
     onChange({ [name]: value });
   };
+
+  const coppied = () => {
+    toast.success("Copied");
+  };
   return (
     <Sidebar
       size="lg"
@@ -39,10 +46,22 @@ const CustomSidebar = ({
                 item?.type == "password") &&
                 item?.show && (
                   <div className="mb-1" key={index}>
-                    <Label className="form-label" for={item?.name}>
-                      {item?.label}
-                      {item?.required && <span className="text-danger">*</span>}
-                    </Label>
+                    <span className="d-flex justify-content-between">
+                      <Label className="form-label" for={item?.name}>
+                        {item?.label}
+                        {item?.required && (
+                          <span className="text-danger">*</span>
+                        )}
+                      </Label>
+                      {item?.isCopied && (
+                        <CopyToClipboard
+                          text={data?.[item?.name]}
+                          onCopy={coppied}
+                        >
+                          <Copy size={16} className="cursor-pointer" />
+                        </CopyToClipboard>
+                      )}
+                    </span>
                     <Input
                       type={item?.type}
                       name={item?.name}
@@ -58,10 +77,20 @@ const CustomSidebar = ({
                 )}
               {item?.type == "select" && !item?.isMulti && item?.show && (
                 <div className="mb-1" key={index}>
-                  <Label className="form-label" for={item?.name}>
-                    {item?.label}
-                    {item?.required && <span className="text-danger">*</span>}
-                  </Label>
+                  <span className="d-flex justify-content-between">
+                    <Label className="form-label" for={item?.name}>
+                      {item?.label}
+                      {item?.required && <span className="text-danger">*</span>}
+                    </Label>
+                    {item?.isCopied && (
+                      <CopyToClipboard
+                        text={data?.[item?.name]}
+                        onCopy={coppied}
+                      >
+                        <Copy size={16} className="cursor-pointer" />
+                      </CopyToClipboard>
+                    )}
+                  </span>
                   <Select
                     className="react-select"
                     classNamePrefix="select"
@@ -81,10 +110,19 @@ const CustomSidebar = ({
               )}
               {item?.type == "select" && item?.isMulti && item?.show && (
                 <div className="mb-1" key={index}>
-                  <Label className="form-label" for={item?.name}>
-                    {item?.label}
-                    {item?.required && <span className="text-danger">*</span>}
-                  </Label>
+                  <span className="d-flex justify-content-between">
+                    {item?.isCopied && (
+                      <Label className="form-label" for={item?.name}>
+                        {item?.label}
+                        {item?.required && (
+                          <span className="text-danger">*</span>
+                        )}
+                      </Label>
+                    )}
+                    <CopyToClipboard text={data?.[item?.name]} onCopy={coppied}>
+                      <Copy size={16} className="cursor-pointer" />
+                    </CopyToClipboard>
+                  </span>
                   <Select
                     className="react-select"
                     classNamePrefix="react-select"

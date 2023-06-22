@@ -19,10 +19,13 @@ import LanguagesRoute from "@src/views/Appearances/Languages/Route";
 import ParentalAdvisoriesRoute from "@src/views/Appearances/ParentalAdvisories/Route";
 import SubgenresRoute from "@src/views/Appearances/Subgenres/Route";
 import AudiosRoute from "@src/views/Audios/Route";
+import SupportCentersRoute from "@src/views/SupportCenters/Route";
 import ArtistsRoute from "@src/views/UserApprearances/Artists/Route";
 import LabelsRoute from "@src/views/UserApprearances/Labels/Route";
 import UsersRoute from "@src/views/Users/Route";
-
+import ArtistChannelsRoute from "@src/views/YoutubeRequests/ArtistChannels/Route";
+import ClaimReleasesRoute from "@src/views/YoutubeRequests/ClaimReleases/Route";
+import ContentIdsRoute from "@src/views/YoutubeRequests/ContentIds/Route";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -54,6 +57,10 @@ const Routes = [
   ...ArtistsRoute,
   ...UsersRoute,
   ...AudiosRoute,
+  ...SupportCentersRoute,
+  ...ClaimReleasesRoute,
+  ...ContentIdsRoute,
+  ...ArtistChannelsRoute,
   {
     path: "/",
     index: true,
