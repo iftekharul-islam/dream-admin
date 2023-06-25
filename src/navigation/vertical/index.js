@@ -1,4 +1,13 @@
-import { Circle, Cpu, Headphones, Music, Settings, Users, Youtube } from "react-feather";
+import {
+  Circle,
+  Cpu,
+  DollarSign,
+  Headphones,
+  Music,
+  Settings,
+  Users,
+  Youtube,
+} from "react-feather";
 
 const check = (permission) => {
   const permissions = JSON.parse(localStorage.getItem("permissions"));
@@ -53,6 +62,28 @@ export default [
         icon: <Circle size={20} />,
         isAccess: true,
         navLink: "/channel-request",
+      },
+    ],
+  },
+  {
+    id: "earning",
+    title: "Earnings",
+    icon: <DollarSign size={20} />,
+    isAccess: true,
+    children: [
+      {
+        id: "account",
+        title: "Accounts",
+        icon: <Circle size={20} />,
+        isAccess: true,
+        navLink: "/account",
+      },
+      {
+        id: "withdraw_history",
+        title: "Withdraw History",
+        icon: <Circle size={20} />,
+        isAccess: true,
+        navLink: "/withdraw-history",
       },
     ],
   },
