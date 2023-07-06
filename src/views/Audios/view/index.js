@@ -275,12 +275,12 @@ const index = () => {
                 <h3 className="mx-1">Player</h3>
                 <div className="border rounded p-1">
                   {showData?.images &&
-                    showData?.images[0]?.image_download_url && (
+                    showData?.images?.image_download_url && (
                       <sapn>
                         <img
                           src={
                             showData?.images &&
-                            showData?.images[0]?.image_download_url
+                            showData?.images?.image_download_url
                           }
                           width="100%"
                         />
@@ -289,7 +289,7 @@ const index = () => {
                           className="mt-2"
                           onClick={() =>
                             handleDownload(
-                              showData?.images[0]?.image_download_url
+                              showData?.images?.image_download_url
                             )
                           }
                         >
@@ -298,10 +298,10 @@ const index = () => {
                       </sapn>
                     )}
 
-                  {showData?.files && showData?.files[0]?.file_download_url && (
+                  {showData?.files && showData?.files?.file_download_url && (
                     <video controls name="media" width="100%" height={60}>
                       <source
-                        src={showData?.files[0]?.file_download_url}
+                        src={showData?.files?.file_download_url}
                         type="audio/mpeg"
                       />
                     </video>
