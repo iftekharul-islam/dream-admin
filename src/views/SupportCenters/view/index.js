@@ -185,13 +185,13 @@ function ChatWindow({ data }) {
             >
               {adminClass && (
                 <small>
-                  {moment(message?.created_at).format("hh:mm on DD MMM YY")}{" "}
+                  {moment(message?.created_at).format("hh:mmA on DD MMM YY")}{" "}
                 </small>
               )}
               <strong className="px-1">{message?.message}</strong>{" "}
               {!adminClass && (
                 <small>
-                  {moment(message?.created_at).format("hh:mm on DD MMM YY")}{" "}
+                  {moment(message?.created_at).format("hh:mmA on DD MMM YY")}{" "}
                 </small>
               )}
             </li>
