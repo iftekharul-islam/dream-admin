@@ -45,10 +45,10 @@ export const columns = [
   {
     name: "Caller Tune",
     minWidth: "120px",
-    selector: (row) => row.is_coller_tune,
+    selector: (row) => row.is_caller_tune,
     cell: (row) => (
       <span className="text-capitalize">
-        {row.is_coller_tune ? "Created" : "Not yet"}
+        {row.is_caller_tune ? "Created" : "Not yet"}
       </span>
     ),
   },
