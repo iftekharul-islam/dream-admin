@@ -37,6 +37,13 @@ export default [
     navLink: "/audio",
   },
   {
+    id: "caller_tunes",
+    title: "Caller Tunes",
+    icon: <Music size={20} />,
+    isAccess: true,
+    navLink: "/caller-tunes",
+  },
+  {
     id: "youtube_request",
     title: "Youtube Requests",
     icon: <Youtube size={20} />,
@@ -72,11 +79,11 @@ export default [
     isAccess: true,
     children: [
       {
-        id: "account",
-        title: "Accounts",
+        id: "deposit_history",
+        title: "Deposit History",
         icon: <Circle size={20} />,
         isAccess: true,
-        navLink: "/account",
+        navLink: "/deposit-history",
       },
       {
         id: "withdraw_history",
@@ -127,6 +134,13 @@ export default [
         icon: <Circle size={20} />,
         isAccess: true,
         navLink: "/parental-advisory",
+      },
+      {
+        id: "crbt",
+        title: "CRBT",
+        icon: <Circle size={20} />,
+        isAccess: true,
+        navLink: "/crbt",
       },
     ],
   },

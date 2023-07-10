@@ -13,12 +13,16 @@ import PublicRoute from "@components/routes/PublicRoute";
 // ** Utils
 import { isObjEmpty } from "@utils";
 
+import CRBTRoute from "@src/views/Appearances/CRBT/Route";
 import FormatsRoute from "@src/views/Appearances/Formats/Route";
 import GenresRoute from "@src/views/Appearances/Genres/Route";
 import LanguagesRoute from "@src/views/Appearances/Languages/Route";
 import ParentalAdvisoriesRoute from "@src/views/Appearances/ParentalAdvisories/Route";
 import SubgenresRoute from "@src/views/Appearances/Subgenres/Route";
 import AudiosRoute from "@src/views/Audios/Route";
+import CallerTunesRoute from "@src/views/CallerTunes/Route";
+import DepositHistoryRoute from "@src/views/Earnings/DepositHistory/Route";
+import WithdrawHistoryRoute from "@src/views/Earnings/WithdrawHistory/Route";
 import SupportCentersRoute from "@src/views/SupportCenters/Route";
 import ArtistsRoute from "@src/views/UserApprearances/Artists/Route";
 import LabelsRoute from "@src/views/UserApprearances/Labels/Route";
@@ -57,10 +61,14 @@ const Routes = [
   ...ArtistsRoute,
   ...UsersRoute,
   ...AudiosRoute,
+  ...CallerTunesRoute,
   ...SupportCentersRoute,
   ...ClaimReleasesRoute,
   ...ContentIdsRoute,
   ...ArtistChannelsRoute,
+  ...CRBTRoute,
+  ...WithdrawHistoryRoute,
+  ...DepositHistoryRoute,
   {
     path: "/",
     index: true,
