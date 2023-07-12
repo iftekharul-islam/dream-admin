@@ -70,6 +70,15 @@ const SideBar = () => {
       isClearable: false,
       placeHolder: "Status",
       show: uploadData?.isEdit,
+    },    
+    {
+      label: "File",
+      required: false,
+      name: "file_url",
+      type: "file",
+      placeHolder: "File",
+      disabled: false,
+      show: true,
     },
   ];
 

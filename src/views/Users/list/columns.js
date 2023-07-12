@@ -22,9 +22,21 @@ export const columns = [
   {
     name: "Name",
     minWidth: "180px",
-    selector: (row) => row.name,
-    cell: (row) => <span className="text-capitalize">{row.name}</span>,
+    selector: (row) => row,
+    cell: (row) => <span className="text-capitalize">{row?.first_name} {row?.last_name}</span>,
   },
+  {
+    name: "Username",
+    minWidth: "180px",
+    selector: (row) => row?.username,
+    cell: (row) => <span>{row?.username}</span>,
+  },  
+  {
+    name: "Govt. Id",
+    minWidth: "180px",
+    selector: (row) => row?.govt_id,
+    cell: (row) => <span>{row?.govt_id}</span>,
+  },  
   {
     name: "Email",
     minWidth: "180px",

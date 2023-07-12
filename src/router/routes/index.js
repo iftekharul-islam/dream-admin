@@ -13,6 +13,7 @@ import PublicRoute from "@components/routes/PublicRoute";
 // ** Utils
 import { isObjEmpty } from "@utils";
 
+import AnalyticsRoute from "@src/views/Analytics/Route";
 import CRBTRoute from "@src/views/Appearances/CRBT/Route";
 import FormatsRoute from "@src/views/Appearances/Formats/Route";
 import GenresRoute from "@src/views/Appearances/Genres/Route";
@@ -69,6 +70,7 @@ const Routes = [
   ...CRBTRoute,
   ...WithdrawHistoryRoute,
   ...DepositHistoryRoute,
+  ...AnalyticsRoute,
   {
     path: "/",
     index: true,

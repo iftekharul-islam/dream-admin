@@ -5,6 +5,7 @@ import {
   Headphones,
   Music,
   Settings,
+  Triangle,
   Users,
   Youtube,
 } from "react-feather";
@@ -42,6 +43,13 @@ export default [
     icon: <Music size={20} />,
     isAccess: true,
     navLink: "/caller-tunes",
+  },
+  {
+    id: "analytics",
+    title: "Analytics",
+    icon: <Triangle size={20} />,
+    isAccess: true,
+    navLink: "/analytics",
   },
   {
     id: "youtube_request",
