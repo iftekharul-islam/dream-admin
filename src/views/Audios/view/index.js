@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -8,6 +8,7 @@ import {
   CardBody,
   CardHeader,
   Col,
+  Input,
   Label,
   Row,
 } from "reactstrap";
@@ -18,6 +19,7 @@ const index = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { showData, options } = useSelector((state) => state.audios);
+  const [note, setNote] = useState(null);
 
   useEffect(() => {
     if (id) dispatch(getData(id));
@@ -25,7 +27,7 @@ const index = () => {
 
   const changeStatus = (item) => {
     showData?.status != item?.value &&
-      dispatch(updateData({ id, data: { status: item?.value } }));
+      dispatch(updateData({ id, data: { status: item?.value, note: note } }));
   };
 
   const handleDownload = (url) => {
@@ -45,7 +47,9 @@ const index = () => {
               <Button
                 color="primary"
                 className="me-1"
-                onClick={() => navigate("/audio/edit/" + id, { replace: false })}
+                onClick={() =>
+                  navigate("/audio/edit/" + id, { replace: false })
+                }
               >
                 Edit
               </Button>
@@ -66,6 +70,12 @@ const index = () => {
               );
             })}
           </div>
+          <Input
+            type="text"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            placeholder="Note"
+          />
         </CardHeader>
         <hr />
         <CardBody>
@@ -274,29 +284,26 @@ const index = () => {
               <div>
                 <h3 className="mx-1">Player</h3>
                 <div className="border rounded p-1">
-                  {showData?.images &&
-                    showData?.images?.image_download_url && (
-                      <sapn>
-                        <img
-                          src={
-                            showData?.images &&
-                            showData?.images?.image_download_url
-                          }
-                          width="100%"
-                        />
-                        <Button
-                          color="primary"
-                          className="mt-2"
-                          onClick={() =>
-                            handleDownload(
-                              showData?.images?.image_download_url
-                            )
-                          }
-                        >
-                          Download Image
-                        </Button>
-                      </sapn>
-                    )}
+                  {showData?.images && showData?.images?.image_download_url && (
+                    <sapn>
+                      <img
+                        src={
+                          showData?.images &&
+                          showData?.images?.image_download_url
+                        }
+                        width="100%"
+                      />
+                      <Button
+                        color="primary"
+                        className="mt-2"
+                        onClick={() =>
+                          handleDownload(showData?.images?.image_download_url)
+                        }
+                      >
+                        Download Image
+                      </Button>
+                    </sapn>
+                  )}
 
                   {showData?.files && showData?.files?.file_download_url && (
                     <video controls name="media" width="100%" height={60}>

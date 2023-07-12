@@ -1,3 +1,4 @@
+import analytics from "@src/views/Analytics/store";
 import crbts from "@src/views/Appearances/CRBT/store";
 import formats from "@src/views/Appearances/Formats/store";
 import genres from "@src/views/Appearances/Genres/store";
@@ -41,6 +42,7 @@ const rootReducer = {
   crbts,
   withdrawals,
   deposits,
+  analytics
 };
 
 export default rootReducer;

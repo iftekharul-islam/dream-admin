@@ -23,6 +23,9 @@ const CustomSidebar = ({
   const onChangeOption = (name, value) => {
     onChange({ [name]: value });
   };
+  const onChangeFile = (e) => {
+    onChange({ [e.target.name]: e.target.files[0] });
+  };
 
   const coppied = () => {
     toast.success("Copied");
@@ -140,6 +143,35 @@ const CustomSidebar = ({
                       )
                     }
                     placeholder={item?.placeholder}
+                  />
+                  {errors?.[item?.name] && (
+                    <p className="text-danger">{errors?.[item?.name]}</p>
+                  )}
+                </div>
+              )}
+              {item?.type == "file" && item?.show && (
+                <div className="mb-1" key={index}>
+                  <span className="d-flex justify-content-between">
+                    <Label className="form-label" for={item?.name}>
+                      {item?.label}
+                      {item?.required && <span className="text-danger">*</span>}
+                    </Label>
+
+                    {item?.isCopied && (
+                      <CopyToClipboard
+                        text={data?.[item?.name]}
+                        onCopy={coppied}
+                      >
+                        <Copy size={16} className="cursor-pointer" />
+                      </CopyToClipboard>
+                    )}
+                  </span>
+                  <Input
+                    type='file'
+                    name={item?.name}
+                    disabled={item?.disabled}
+                    placeholder={item?.placeHolder}
+                    onChange={onChangeFile}
                   />
                   {errors?.[item?.name] && (
                     <p className="text-danger">{errors?.[item?.name]}</p>

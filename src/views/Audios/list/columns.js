@@ -1,4 +1,3 @@
-
 export const columns = [
   {
     name: "Title",
@@ -56,7 +55,11 @@ export const columns = [
     name: "User",
     minWidth: "120px",
     selector: (row) => row?.user,
-    cell: (row) => <span className="text-capitalize">{row?.user?.name}</span>,
+    cell: (row) => (
+      <span className="text-capitalize">
+        {row?.user?.first_name + " " + row?.user?.last_name}
+      </span>
+    ),
   },
   {
     name: "Status",
@@ -65,5 +68,5 @@ export const columns = [
     cell: (row) => (
       <span className="text-capitalize">{row.current_status}</span>
     ),
-  }
+  },
 ];

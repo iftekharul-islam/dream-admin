@@ -4,17 +4,16 @@ import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CustomSidebar from "../../../@core/components/CustomSidebar/CustomSidebar";
 import {
-  addData,
   emptyUploadData,
   setUploadData,
   toggleSidebarAction,
-  updateData,
+  updateData
 } from "../store";
 
 const SideBar = () => {
   const dispatch = useDispatch();
   const { loading, sidebarOpen, errors, uploadData, options } = useSelector(
-    (state) => state.users
+    (state) => state.analytics
   );
 
   const toggleSidebar = () => {
@@ -23,7 +22,7 @@ const SideBar = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    dispatch(addData());
+    // dispatch(addData());
   };
 
   const update = (e) => {
@@ -33,65 +32,63 @@ const SideBar = () => {
 
   const fields = [
     {
-      label: "First Name",
+      label: "Date",
       required: true,
-      name: "first_name",
+      name: "created_at",
       type: "text",
-      placeHolder: "First Name",
+      placeHolder: "Date",
+      disabled: true,
       show: true,
     },
     {
-      label: "Last Name",
-      required: true,
-      name: "last_name",
-      type: "text",
-      placeHolder: "Last Name",
-      show: true,
-    },
-    {
-      label: "Govt ID",
-      required: true,
-      name: "govt_id",
-      type: "text",
-      placeHolder: "Govt ID",
-      show: true,
-    },
-    {
-      label: "Username",
-      required: true,
-      name: "username",
-      type: "text",
-      placeHolder: "Username",
-      disabled: uploadData?.isEdit,
-      show: true,
-    },
-    {
-      label: "Email",
+      label: "Year",
       required: false,
-      name: "email",
+      name: "year",
       type: "text",
-      placeHolder: "Email",
-      disabled: uploadData?.isEdit,
+      placeHolder: "Year",
+      disabled: true,
       show: true,
     },
     {
-      label: "Password",
+      label: "Month",
       required: false,
-      name: "password",
-      type: "password",
-      placeHolder: "Password",
+      name: "month",
+      type: "text",
+      placeHolder: "Month",
+      disabled: true,
+      show: true,
+    },
+    {
+      label: "User",
+      required: false,
+      name: "user_id",
+      type: "select",
+      options: options?.user,
+      isMulti: false,
+      isClearable: false,
+      disabled: true,
+      placeHolder: "User",
       show: true,
     },
     {
       label: "Status",
-      required: false,
+      required: true,
       name: "status",
       type: "select",
       options: options?.status,
       isMulti: false,
       isClearable: false,
       placeHolder: "Status",
-      show: uploadData?.isEdit,
+      show: true,
+    },
+    {
+      label: "File",
+      required: false,
+      name: "file_url",
+      type: "file",
+      placeHolder: "File",
+      disabled: false,
+      show: true,
     },
   ];
 
