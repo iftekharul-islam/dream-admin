@@ -6,22 +6,15 @@ import Avatar from "@components/avatar";
 
 // ** Third Party Components
 import {
-  User,
-  Mail,
-  CheckSquare,
-  MessageSquare,
-  Settings,
-  CreditCard,
-  HelpCircle,
-  Power,
+  Power
 } from "react-feather";
 
 // ** Reactstrap Imports
 import {
-  UncontrolledDropdown,
+  DropdownItem,
   DropdownMenu,
   DropdownToggle,
-  DropdownItem,
+  UncontrolledDropdown,
 } from "reactstrap";
 
 // ** Default Avatar Image
@@ -62,7 +55,7 @@ const UserDropdown = () => {
         />
       </DropdownToggle>
       <DropdownMenu end>
-        <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
+        {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
           <User size={14} className="me-75" />
           <span className="align-middle">Profile</span>
         </DropdownItem>
@@ -94,7 +87,7 @@ const UserDropdown = () => {
         <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
           <HelpCircle size={14} className="me-75" />
           <span className="align-middle">FAQ</span>
-        </DropdownItem>
+        </DropdownItem> */}
         <DropdownItem tag={Link} onClick={logout}>
           <Power size={14} className="me-75" />
           <span className="align-middle">Logout</span>
