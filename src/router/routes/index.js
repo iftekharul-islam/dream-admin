@@ -77,7 +77,7 @@ const Routes = [
     element: (
       <Navigate
         replace
-        to={localStorage.getItem("accessToken") ? "/home" : DefaultRoute}
+        to={localStorage.getItem("accessToken") ? "/user" : DefaultRoute}
       />
     ),
   },

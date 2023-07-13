@@ -49,7 +49,7 @@ const Login = () => {
     e.preventDefault();
     const res = await dispatch(Signin(data));
     if (res?.payload?.status) {
-      navigate('/home')
+      navigate('/user')
     } else {
       setErrors(res?.payload?.data?.errors)
     }   
