@@ -46,10 +46,8 @@ export const columns = [
   {
     name: "User",
     minWidth: "120px",
-    selector: (row) => row?.audio?.user,
-    cell: (row) => (
-      <span className="text-capitalize">{row?.audio?.user?.name}</span>
-    ),
+    selector: (row) => row?.user,
+    cell: (row) => <span>{row?.audio?.user?.first_name} {row?.audio?.user?.last_name}</span>,
   },
   {
     name: "Caller Tune Request",

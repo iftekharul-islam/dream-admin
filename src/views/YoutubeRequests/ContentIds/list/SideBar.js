@@ -74,6 +74,14 @@ const SideBar = () => {
       placeHolder: "Status",
       show: true,
     },
+    {
+      label: "Note",
+      required: true,
+      name: "note",
+      type: "text",
+      placeHolder: "Note",
+      show: true,
+    },
   ];
 
   const button = [

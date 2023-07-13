@@ -41,8 +41,8 @@ export const columns = [
   {
     name: "User",
     minWidth: "120px",
-    selector: (row) => row?.user?.name,
-    cell: (row) => <span>{row?.user?.name}</span>,
+    selector: (row) => row?.user,
+    cell: (row) => <span>{row?.user?.first_name} {row?.user?.last_name}</span>,
   },
   {
     name: "Status",
