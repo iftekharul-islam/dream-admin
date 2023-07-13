@@ -1,7 +1,7 @@
 import moment from "moment";
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Button,
   Card,
@@ -15,9 +15,10 @@ import { getData, updateData } from "../store";
 
 const index = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { id } = useParams();
   const { showData, options } = useSelector((state) => state.callerTunes);
+
+  
 
   useEffect(() => {
     if (id) dispatch(getData(id));
@@ -41,7 +42,7 @@ const index = () => {
       <Card>
         <CardHeader>
           <div>
-            <h4>
+            {/* <h4>
               <Button
                 color="primary"
                 className="me-1"
@@ -49,14 +50,16 @@ const index = () => {
               >
                 Edit
               </Button>
-            </h4>
+            </h4> */}
           </div>
           <div className="d-flex align-items-center">
             {options?.status?.map((item) => {
               return (
                 <Button
                   color={
-                    showData?.is_caller_tune == item?.value ? "primary" : "secondary"
+                    showData?.is_caller_tune == item?.value
+                      ? "primary"
+                      : "secondary"
                   }
                   className="me-1"
                   onClick={() => changeStatus(item)}
@@ -274,29 +277,26 @@ const index = () => {
               <div>
                 <h3 className="mx-1">Player</h3>
                 <div className="border rounded p-1">
-                  {showData?.images &&
-                    showData?.images?.image_download_url && (
-                      <sapn>
-                        <img
-                          src={
-                            showData?.images &&
-                            showData?.images?.image_download_url
-                          }
-                          width="100%"
-                        />
-                        <Button
-                          color="primary"
-                          className="mt-2"
-                          onClick={() =>
-                            handleDownload(
-                              showData?.images?.image_download_url
-                            )
-                          }
-                        >
-                          Download Image
-                        </Button>
-                      </sapn>
-                    )}
+                  {showData?.images && showData?.images?.image_download_url && (
+                    <sapn>
+                      <img
+                        src={
+                          showData?.images &&
+                          showData?.images?.image_download_url
+                        }
+                        width="100%"
+                      />
+                      <Button
+                        color="primary"
+                        className="mt-2"
+                        onClick={() =>
+                          handleDownload(showData?.images?.image_download_url)
+                        }
+                      >
+                        Download Image
+                      </Button>
+                    </sapn>
+                  )}
 
                   {showData?.files && showData?.files?.file_download_url && (
                     <video controls name="media" width="100%" height={60}>
@@ -308,6 +308,18 @@ const index = () => {
                   )}
                 </div>
               </div>
+              {showData?.crbts?.length > 0 && (
+                <div>
+                  <h3 className="mx-1 mt-2">Label</h3>
+                  <div className="border rounded p-1">
+                    {showData?.crbts?.map((crbt) => (
+                      <div className="my-2">
+                        <img src={crbt?.crbt?.icon} height={80} width={80} />
+                      </div>                      
+                    ))}
+                  </div>
+                </div>
+              )}
             </Col>
           </Row>
         </CardBody>
