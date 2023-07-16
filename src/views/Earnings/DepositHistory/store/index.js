@@ -48,7 +48,7 @@ export const updateData = createAsyncThunk(
 export const getUserOptions = createAsyncThunk(
   "store/getUserOptions",
   async () => {
-    const res = await Api.get('option/user');
+    const res = await Api.get("option/user");
     return res;
   }
 );
@@ -65,7 +65,7 @@ export const storeSlice = createSlice({
     to: 0,
     loading: false,
 
-    params: { rowsPerPage: 10, q: null, page: 1, type: 'credit' },
+    params: { rowsPerPage: 10, q: null, page: 1, type: "credit" },
     searchParams: {},
     pagination: {},
 
@@ -78,6 +78,31 @@ export const storeSlice = createSlice({
         { label: "Rejected", value: "Rejected" },
       ],
       user: [],
+      month: [
+        { label: "January", value: "January" },
+        { label: "February", value: "February" },
+        { label: "March", value: "March" },
+        { label: "April", value: "April" },
+        { label: "May", value: "May" },
+        { label: "June", value: "June" },
+        { label: "July", value: "July" },
+        { label: "August", value: "August" },
+        { label: "September", value: "September" },
+        { label: "October", value: "October" },
+        { label: "November", value: "November" },
+        { label: "December", value: "December" },
+      ],
+      year: [
+        {
+          label: new Date().getFullYear() - 1,
+          value: new Date().getFullYear() - 1,
+        },
+        { label: new Date().getFullYear(), value: new Date().getFullYear() },
+        {
+          label: new Date().getFullYear() + 1,
+          value: new Date().getFullYear() + 1,
+        },
+      ],
     },
   },
   extraReducers: (builder) => {
@@ -86,11 +111,10 @@ export const storeSlice = createSlice({
       state.total = action.payload?.total;
       state.from = action.payload?.from;
       state.to = action.payload?.to;
-    })
-    builder.addCase(getUserOptions.fulfilled, (state, action) => {    
-      state.options = {...state.options, user: action.payload?.data}
-    })
-    ;
+    });
+    builder.addCase(getUserOptions.fulfilled, (state, action) => {
+      state.options = { ...state.options, user: action.payload?.data };
+    });
   },
   reducers: {
     setParams: (state, action) => {
@@ -101,7 +125,7 @@ export const storeSlice = createSlice({
     },
     toggleSidebarAction: (state) => {
       state.sidebarOpen = !state.sidebarOpen;
-      state.errors= [];
+      state.errors = [];
     },
     setLoading: (state, action) => {
       state.loading = action.payload;

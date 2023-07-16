@@ -21,22 +21,28 @@ const renderActions = (row) => {
 
 export const columns = [
   {
-    name: "Date",
+    name: "Issue Date",
     minWidth: "250px",
-    selector: (row) => row.date,
-    cell: (row) => <span className="text-capitalize">{moment(row?.date).format('DD-MMM-YYYY')}</span>,
+    selector: (row) => row.created_at,
+    cell: (row) => <span className="text-capitalize">{moment(row?.created_at).format('DD-MMM-YYYY')}</span>,
+  },
+  {
+    name: "Month",
+    minWidth: "180px",
+    selector: (row) => row?.for_month,
+    cell: (row) => <span className="text-capitalize">{row?.for_month}</span>,
+  },
+  {
+    name: "Year",
+    minWidth: "180px",
+    selector: (row) => row?.for_year,
+    cell: (row) => <span className="text-capitalize">{row?.for_year}</span>,
   },
   {
     name: "Amount",
     minWidth: "180px",
     selector: (row) => row?.amount,
     cell: (row) => <span className="text-capitalize">{row?.amount}</span>,
-  },
-  {
-    name: "Month",
-    minWidth: "180px",
-    selector: (row) => row?.for,
-    cell: (row) => <span className="text-capitalize">{row?.for}</span>,
   },
   {
     name: "User",

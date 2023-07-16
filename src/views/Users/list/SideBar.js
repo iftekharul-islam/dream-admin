@@ -66,6 +66,15 @@ const SideBar = () => {
       show: true,
     },
     {
+      label: "Phone Number",
+      required: true,
+      name: "phone",
+      type: "text",
+      placeHolder: "Phone Number",
+      disabled: uploadData?.isEdit,
+      show: true,
+    },
+    {
       label: "Email",
       required: false,
       name: "email",
