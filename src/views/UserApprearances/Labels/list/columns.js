@@ -21,6 +21,11 @@ const renderActions = (row) => {
 
 export const columns = [
   {
+    name: "ID",
+    minWidth: "80px",
+    selector: (row) => row.id,
+    cell: (row) => <span>{row.id}</span>,
+  },{
     name: "Title",
     minWidth: "180px",
     selector: (row) => row.title,
