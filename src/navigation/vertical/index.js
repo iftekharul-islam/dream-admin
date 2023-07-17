@@ -150,6 +150,13 @@ export default [
         isAccess: true,
         navLink: "/crbt",
       },
+      {
+        id: "settings",
+        title: "Settings",
+        icon: <Circle size={20} />,
+        isAccess: true,
+        navLink: "/settings",
+      },
     ],
   },
   {

@@ -92,17 +92,7 @@ export const storeSlice = createSlice({
         { label: "November", value: "November" },
         { label: "December", value: "December" },
       ],
-      year: [
-        {
-          label: new Date().getFullYear() - 1,
-          value: new Date().getFullYear() - 1,
-        },
-        { label: new Date().getFullYear(), value: new Date().getFullYear() },
-        {
-          label: new Date().getFullYear() + 1,
-          value: new Date().getFullYear() + 1,
-        },
-      ],
+      year: []
     },
   },
   extraReducers: (builder) => {
@@ -114,6 +104,11 @@ export const storeSlice = createSlice({
     });
     builder.addCase(getUserOptions.fulfilled, (state, action) => {
       state.options = { ...state.options, user: action.payload?.data };
+      let years = [];
+      for (let index = new Date().getFullYear(); index >= 2020; index--) {
+        years.push({ label: index, value: index });        
+      }
+      state.options = { ...state.options, user: action.payload?.data, year:years };
     });
   },
   reducers: {

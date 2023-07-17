@@ -4,6 +4,7 @@ import formats from "@src/views/Appearances/Formats/store";
 import genres from "@src/views/Appearances/Genres/store";
 import languages from "@src/views/Appearances/Languages/store";
 import parentalAdvisories from "@src/views/Appearances/ParentalAdvisories/store";
+import settings from "@src/views/Appearances/Settings/store";
 import subgenres from "@src/views/Appearances/Subgenres/store";
 import audios from "@src/views/Audios/store";
 import callerTunes from "@src/views/CallerTunes/store";
@@ -42,7 +43,8 @@ const rootReducer = {
   crbts,
   withdrawals,
   deposits,
-  analytics
+  analytics,
+  settings
 };
 
 export default rootReducer;
