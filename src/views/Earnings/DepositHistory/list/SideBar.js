@@ -16,6 +16,7 @@ const SideBar = () => {
   const { loading, sidebarOpen, errors, uploadData, options } = useSelector(
     (state) => state.deposits
   );
+  console.log("🚀 ~ file: index.js:13 ~ index ~ params:", options)
 
   const toggleSidebar = () => {
     dispatch(toggleSidebarAction());
