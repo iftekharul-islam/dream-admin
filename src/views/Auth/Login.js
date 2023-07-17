@@ -3,7 +3,6 @@ import { useSkin } from "@hooks/useSkin";
 import { Link, useNavigate } from "react-router-dom";
 
 // ** Icons Imports
-import { Facebook, GitHub, Mail, Twitter } from "react-feather";
 
 // ** Custom Components
 import InputPasswordToggle from "@components/input-password-toggle";
@@ -188,7 +187,7 @@ const Login = () => {
                 Sign in
               </Button>
             </Form>
-            <p className="text-center mt-2">
+            {/* <p className="text-center mt-2">
               <span className="me-25">New on our platform?</span>
               <Link to="/register">
                 <span>Create an account</span>
@@ -196,8 +195,8 @@ const Login = () => {
             </p>
             <div className="divider my-2">
               <div className="divider-text">or</div>
-            </div>
-            <div className="auth-footer-btn d-flex justify-content-center">
+            </div> */}
+            {/* <div className="auth-footer-btn d-flex justify-content-center">
               <Button color="facebook">
                 <Facebook size={14} />
               </Button>
@@ -210,7 +209,7 @@ const Login = () => {
               <Button className="me-0" color="github">
                 <GitHub size={14} />
               </Button>
-            </div>
+            </div> */}
           </Col>
         </Col>
       </Row>

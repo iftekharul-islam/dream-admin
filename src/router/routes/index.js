@@ -19,6 +19,7 @@ import FormatsRoute from "@src/views/Appearances/Formats/Route";
 import GenresRoute from "@src/views/Appearances/Genres/Route";
 import LanguagesRoute from "@src/views/Appearances/Languages/Route";
 import ParentalAdvisoriesRoute from "@src/views/Appearances/ParentalAdvisories/Route";
+import SettingsRoute from "@src/views/Appearances/Settings/Route";
 import SubgenresRoute from "@src/views/Appearances/Subgenres/Route";
 import AudiosRoute from "@src/views/Audios/Route";
 import CallerTunesRoute from "@src/views/CallerTunes/Route";
@@ -71,6 +72,7 @@ const Routes = [
   ...WithdrawHistoryRoute,
   ...DepositHistoryRoute,
   ...AnalyticsRoute,
+  ...SettingsRoute,
   {
     path: "/",
     index: true,
